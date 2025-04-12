@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+body {
+  background-color: #171717;
+  color: white;
+}
+
+.clickerCoin {
+  background-image: url('@assets/BLABLOU.png');
+  background-size: contain;
+}
