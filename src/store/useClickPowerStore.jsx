@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import useGameStore from '@storeGame'
 
-const useClickPoweStore = create((set, get) => ({
+const useClickPowerStore = create((set, get) => ({
   clickPowerPrice: 25,
   clickPowerAmount: 1,
 
@@ -20,6 +20,21 @@ const useClickPoweStore = create((set, get) => ({
       setclickPowerAmount(clickPowerAmount + 1);
     }
   },
-}))
 
-export default useClickPoweStore;
+  loadFromLocalStorage: () => {
+    try {
+      const saved = localStorage.getItem('clickPowerState');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        set({
+          clickPowerPrice: parsed.clickPowerPrice ?? 25,
+          clickPowerAmount: parsed.clickPowerAmount ?? 1
+        });
+      }
+    } catch (e) {
+      console.error("Erreur au chargement du clickPowerState", e);
+    }
+  }
+}));
+
+export default useClickPowerStore;

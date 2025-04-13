@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { create } from 'zustand'
 
 const useGameStore = create((set) => ({
@@ -17,18 +16,18 @@ const useGameStore = create((set) => ({
 
   loadFromLocalStorage: () => {
     try {
-      const savedState = localStorage.getItem('gameState');
-      return savedState ? JSON.parse(savedState) : { globalBlablou: 0, blablou: 0, clickPower: 1 };
-    } catch (error) {
-      console.error("Error loading from localStorage", error);
-      return { globalBlablou: 0, blablou: 0, clickPower: 1 };
+      const saved = localStorage.getItem('gameState');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        set({
+          globalBlablou: parsed.globalBlablou ?? 0,
+          blablou: parsed.blablou ?? 0,
+          clickPower: parsed.blablou ?? 1,
+        });
+      }
+    } catch (e) {
+      console.error("Erreur au chargement du clickPowerState", e);
     }
-  },
-
-  getGameAllData: () => {
-    console.log(useGameStore.getState());
-    
-    return useGameStore.getState();
   }
 }))
 

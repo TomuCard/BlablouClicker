@@ -2,14 +2,15 @@ import { useEffect } from 'react'
 import useGameStore from '@storeGame'
 import useAutoClickStore from '@storeAutoClick'
 
-export default function Tick() {
+export default function useTick() {
   const { clickPower, incrementBlablou } = useGameStore();
-    const { autoClickerAmount } = useAutoClickStore();
+  const { autoClickerAmount } = useAutoClickStore();
 
+  // AUTO CLICKER
   useEffect(() => {
     const interval = setInterval(() => {
       incrementBlablou(autoClickerAmount * clickPower);
-    }, 1000);
+    }, 10000);
   
     return () => clearInterval(interval);
   }, [autoClickerAmount]);
