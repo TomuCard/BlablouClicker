@@ -3,7 +3,7 @@ import { create } from 'zustand'
 const useGameStore = create((set) => ({
   globalBlablou: 0,
   blablou: 0,
-  clickPower: 1,
+  // clickPower: 1,
 
   incrementBlablou: (amount) =>
     set((state) => ({ 
@@ -11,7 +11,7 @@ const useGameStore = create((set) => ({
       globalBlablou: state.globalBlablou + amount,
     })),
 
-  setClickPower: (value) => set({ clickPower: value }),
+  // setClickPower: (value) => set({ clickPower: value }),
   setBlablou: (value) => set({ blablou: value }),
 
   loadFromLocalStorage: () => {
@@ -22,11 +22,11 @@ const useGameStore = create((set) => ({
         set({
           globalBlablou: parsed.globalBlablou ?? 0,
           blablou: parsed.blablou ?? 0,
-          clickPower: parsed.blablou ?? 1,
+          // clickPower: parsed.blablou ?? 1,
         });
       }
     } catch (e) {
-      console.error("Erreur au chargement du clickPowerState", e);
+      console.error("Erreur au chargement du gameState", e);
     }
   }
 }))

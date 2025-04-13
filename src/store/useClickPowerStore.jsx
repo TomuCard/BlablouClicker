@@ -9,11 +9,11 @@ const useClickPowerStore = create((set, get) => ({
   setclickPowerAmount: (value) => set({ clickPowerAmount: value }),
 
   upgradeClickPower: () => {
-    const { clickPower, blablou, setClickPower, setBlablou } = useGameStore.getState();
+    const { clickPower, blablou, setBlablou } = useGameStore.getState();
     const { clickPowerPrice, clickPowerAmount, setclickPowerPrice, setclickPowerAmount } = get();
 
     if (blablou >= clickPowerPrice) {
-      setClickPower(clickPower + 1);
+      // setClickPower(clickPower + 1);
       setBlablou(blablou - clickPowerPrice);
 
       setclickPowerPrice(Math.floor(clickPowerPrice * 1.5));
