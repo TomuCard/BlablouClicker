@@ -16,17 +16,21 @@ export default function useAutoSave() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const gameState = useGameStore.getState()
-      const autoClickerState = useAutoClickStore.getState()
-      const clickPowerState = useClickPowerStore.getState()
-
-      localStorage.setItem('gameState', JSON.stringify(gameState))
-      localStorage.setItem('autoClickerState', JSON.stringify(autoClickerState))
-      localStorage.setItem('clickPowerState', JSON.stringify(clickPowerState))
-
-      console.log('[AutoSave] GameState saved.')
+      save();
     }, 120000) // toutes les 2 minutes
 
     return () => clearInterval(interval)
   }, [])
+}
+
+export function save() {
+  const gameState = useGameStore.getState()
+  const autoClickerState = useAutoClickStore.getState()
+  const clickPowerState = useClickPowerStore.getState()
+
+  localStorage.setItem('gameState', JSON.stringify(gameState))
+  localStorage.setItem('autoClickerState', JSON.stringify(autoClickerState))
+  localStorage.setItem('clickPowerState', JSON.stringify(clickPowerState))
+
+  console.log('[AutoSave] GameState saved.')
 }
